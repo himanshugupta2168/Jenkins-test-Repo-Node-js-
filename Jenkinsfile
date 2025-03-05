@@ -1,31 +1,28 @@
 pipeline {
     agent any
     environment {
-        NODE_HOME = tool 'NodeJS' // Ensure this matches your Jenkins NodeJS tool name
+        NODE_HOME = tool 'NodeJS' // Ensure this matches Jenkins' NodeJS tool name
         PATH = "${NODE_HOME}\\bin;${env.PATH}" // Windows-style path handling
     }
     stages {
         stage('Install Dependencies') {
             steps {
-                bat 'npm install --force'  // Ensures dependencies are installed even if issues occur
+                bat 'npm install --force' // Forces installation if conflicts occur
             }
         }
         stage('Build') {
             steps {
-                bat 'npm run build'
+                bat 'npm build'
             }
         }
         stage('Test') {
             steps {
-                bat 'npm test || echo "Tests failed, but continuing..."'  // Prevents pipeline from failing immediately
+                bat 'npm test'
             }
         }
         stage('Deploy') {
             steps {
-                bat '''
-                    pm2 stop "my-app" || echo "No existing PM2 process found"
-                    pm2 start npm --name "my-app" -- run start
-                '''
+                bat 'npm run start'
             }
         }
     }
