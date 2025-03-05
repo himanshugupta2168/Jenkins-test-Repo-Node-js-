@@ -4,9 +4,10 @@
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build":"echo 'No build step needed for Express.js'"
-  },
+  "start": "node index.js",
+  "build": "echo 'No build step needed for Express.js'",
+  "test": "echo 'No tests defined' && exit 0"
+},
   "dependencies": {
     "express": "^4.13.3"
   },
