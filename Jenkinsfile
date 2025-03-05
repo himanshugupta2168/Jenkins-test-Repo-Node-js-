@@ -17,12 +17,15 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'npm run test'
+                bat 'npm run  test'
             }
         }
         stage('Deploy') {
             steps {
-                bat 'npm run start'
+                bat '''
+                    pm2 stop my-app || echo "No existing process found"
+                    pm2 start npm --name "my-app" -- run start
+                '''
             }
         }
     }
