@@ -22,10 +22,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat '''
-                    pm2 stop my-app || echo "No existing process found"
-                    pm2 start npm --name "my-app" -- run start
-                '''
+                bat 'start node index.js'
             }
         }
     }
