@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build":"node index.js"
+    "build":"echo 'No build step needed for Express.js'"
   },
   "dependencies": {
     "express": "^4.13.3"
